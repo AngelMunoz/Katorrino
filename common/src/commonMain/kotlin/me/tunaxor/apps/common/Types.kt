@@ -27,3 +27,6 @@ sealed class RouteConfig: Parcelable {
     @Parcelize
     object About: RouteConfig()
 }
+
+
+data class Song(val name: String, val path: String)
