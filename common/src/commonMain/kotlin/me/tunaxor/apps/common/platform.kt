@@ -1,5 +1,6 @@
 package me.tunaxor.apps.common
 
-expect fun getPlatformName(): String
+import androidx.compose.runtime.Composable
 
-expect fun getFiles(): List<Song>
+@Composable
+expect fun SongFilePicker(onSelectSongs: (songs: List<Song>) -> Unit)
