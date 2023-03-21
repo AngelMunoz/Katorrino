@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.example.android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="me.tunaxor.apps">
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
     <application
             android:allowBackup="false"
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name="me.tunaxor.apps.apos.MainActivity" android:exported="true">
+        <activity android:name="me.tunaxor.apps.android.MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
