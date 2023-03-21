@@ -1,26 +1,29 @@
 package me.tunaxor.apps.common
 
+import androidx.compose.material.Button
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
 import javax.swing.JFileChooser
-import javax.swing.filechooser.FileFilter
 import javax.swing.filechooser.FileNameExtensionFilter
 import javax.swing.filechooser.FileSystemView
 
-actual fun getPlatformName(): String {
-    return "Desktop"
-}
+@Composable
+actual fun SongFilePicker(onSelectSongs: (songs: List<Song>) -> Unit) {
+    Button(onClick = {
+        val directory = FileSystemView.getFileSystemView().homeDirectory
 
-actual fun getFiles(): List<Song> {
-    val directory = FileSystemView.getFileSystemView().homeDirectory
-
-    val dialog = JFileChooser(directory).apply {
-        dialogTitle = "Select Your Music Files"
-        isMultiSelectionEnabled = true
-        fileFilter =
-            FileNameExtensionFilter("Only MP3 Files", "mp3")
+        val dialog = JFileChooser(directory).apply {
+            dialogTitle = "Select Your Music Files"
+            isMultiSelectionEnabled = true
+            fileFilter =
+                FileNameExtensionFilter("Only MP3 Files", "mp3")
+        }
+        when (dialog.showOpenDialog(null)) {
+            JFileChooser.APPROVE_OPTION ->
+                onSelectSongs(dialog.selectedFiles.map { Song(it.name, it.path) })
+            else -> onSelectSongs(emptyList())
+        }
+    }) {
+        Text("Select Music Files")
     }
-    when (dialog.showOpenDialog(null)) {
-        JFileChooser.APPROVE_OPTION ->
-            return dialog.selectedFiles.map { Song(it.name, it.path) }
-    }
-    return emptyList()
 }
