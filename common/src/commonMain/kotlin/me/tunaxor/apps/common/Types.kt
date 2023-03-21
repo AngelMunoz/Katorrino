@@ -20,6 +20,7 @@ sealed class RouteTarget {
  * can be used as a DU to stablish what pages
  * exist out there and if they have parameters
  */
+@Parcelize
 sealed class RouteConfig: Parcelable {
     @Parcelize
     object Home: RouteConfig()
